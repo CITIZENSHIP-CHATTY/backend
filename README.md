@@ -1,4 +1,5 @@
 ![Chatty](https://github.com/CITIZENSHIP-CHATTY/backend/workflows/Chatty/badge.svg?branch=master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ## CHATTY
 Back-end part of chatty chat application
 
