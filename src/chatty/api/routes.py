@@ -1,7 +1,7 @@
 from aiohttp import web
 
-from chatty import api
+from chatty.api import api
 
-routes = [
+api = [
     web.get('/api/ping', api.ping),
 ]
