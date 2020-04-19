@@ -1,6 +1,6 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 
-from auth import utils
+from chatty import utils
 from settings import MONGODB_URL
 
 DB = None

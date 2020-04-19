@@ -3,17 +3,19 @@ import os
 
 from aiohttp import web
 
-from auth.middleware import auth_middleware
-from auth.routes import authrouters
-from chatty.routes import routes
+from chatty.middlewares import auth_middleware
+from chatty.api.routes import api
+from chatty.auth.routes import auth
 
 
 def create_app():
     app = web.Application(
-        middlewares=[auth_middleware]
+        middlewares=[
+            auth_middleware
+        ]
     )
-    app.add_routes(routes)
-    app.add_routes(authrouters)
+    app.add_routes(auth)
+    app.add_routes(api)
     return app
 
 
