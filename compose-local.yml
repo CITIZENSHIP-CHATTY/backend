@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  web:
+    container_name: chatty-web
+    image: "${IMAGE}"
+    command: "python3 chatty/main.py"
+    ports:
+      - 8080:8080
+    environment:
+      LOGGING_LEVEL: DEBUG
+  db:
+    container_name: chatty-db
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: toor
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-volume:/data/db
+
+volumes:
+  mongo-volume:
