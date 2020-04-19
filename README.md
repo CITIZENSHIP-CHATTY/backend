@@ -1,4 +1,5 @@
-# chatty
+![Chatty](https://github.com/CITIZENSHIP-CHATTY/backend/workflows/Chatty/badge.svg?branch=master)
+## CHATTY
 Back-end part of chatty chat application
 
 # DEVELOPMENT STUFF
