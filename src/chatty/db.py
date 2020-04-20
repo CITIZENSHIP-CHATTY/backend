@@ -1,6 +1,5 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 
-from chatty import utils
 from settings import MONGODB_URL
 
 DB = None
@@ -23,10 +22,3 @@ def db():
 
 def collection(coll_name):
     return db()[coll_name]
-
-
-async def create_user(data):
-    await collection('users').insert_one({
-        'username': data['username'],
-        'password': await utils.encrypt_password(data['password']),
-    })

@@ -1,7 +1,7 @@
 from chatty import utils
-from chatty import db
-
 from aiohttp import web
+
+from chatty.auth.models import User
 
 
 async def registration(request):
@@ -9,7 +9,7 @@ async def registration(request):
     if not await utils.validation_credentials(auth_data):
         return web.json_response({"message": "Invalid credentials"}, status=400)
 
-    await db.create_user(auth_data)
+    await User.create(auth_data)
     return web.json_response({"message": "Registration successfully"}, status=200)
 
 
@@ -21,7 +21,7 @@ async def login(request):
     except KeyError:
         return web.json_response({"message": "Username or password were not provided"}, status=400)
 
-    user = await db.collection('users').find_one({'username': username})
+    user = await User.get_by_username(username)
     if not user:
         return web.json_response({"message": "User with such name does not exists"}, status=400)
 
