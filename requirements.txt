@@ -3,3 +3,4 @@ motor
 aiohttp_cors
 pip
 PyJWT
+pydantic
