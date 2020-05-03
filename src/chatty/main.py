@@ -19,6 +19,9 @@ def create_app():
     return app
 
 
+APP = create_app()
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=os.getenv('LOGGING_LEVEL', 'INFO'))
-    web.run_app(create_app())
+    web.run_app(APP)
