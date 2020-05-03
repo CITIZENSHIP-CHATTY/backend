@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  web:
+    container_name: chatty-web
+    command: bash -c " pip3 install gunicorn &&
+                       gunicorn chatty.main:APP --bind 0.0.0.0:8080 --worker-class aiohttp.GunicornWebWorker"
+    environment:
+      LOGGING_LEVEL: DEBUG
+    expose:
+      - 8080
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d/
