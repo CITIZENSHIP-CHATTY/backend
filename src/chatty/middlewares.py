@@ -1,7 +1,7 @@
 import jwt
-from aiohttp import web
+import os
 
-from settings import SECRET_KEY
+from aiohttp import web
 
 
 @web.middleware
@@ -10,7 +10,7 @@ async def auth_middleware(request, handler):
     token = request.headers.get('Authorization', None)
     if token:
         try:
-            payload = jwt.decode(token, SECRET_KEY)
+            payload = jwt.decode(token, os.environ['SECRET'])
         except (jwt.DecodeError, jwt.ExpiredSignatureError):
             return web.json_response({"message": "Credentials not correctly encoded."}, status=400)
 

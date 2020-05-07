@@ -1,10 +1,11 @@
 import hashlib
+import os
+
 from datetime import datetime, timedelta
 
 import jwt
 
 from chatty import db
-from settings import SECRET_KEY, JWT_DAYS
 
 
 async def validation_credentials(data: dict) -> bool:
@@ -26,7 +27,7 @@ async def validation_credentials(data: dict) -> bool:
 
 
 async def encrypt_password(password: str) -> str:
-    salt = password.encode() + SECRET_KEY.encode()
+    salt = password.encode() + os.environ['SECRET'].encode()
     return hashlib.sha512(salt).hexdigest()
 
 
@@ -35,12 +36,12 @@ async def check_password(password: str, password_hash: str) -> bool:
 
 
 async def generate_jwt_token(data) -> str:
-    duration = datetime.now() + timedelta(days=JWT_DAYS)
+    duration = datetime.now() + timedelta(days=os.environ['JWT_DAYS'])
 
     token = jwt.encode(
         {
             '_id': str(data['_id']),
             'duration': int(duration.strftime('%s'))
-        }, SECRET_KEY
+        }, os.environ['SECRET']
     )
     return token.decode('UTF-8')

@@ -3,6 +3,9 @@ version: '3'
 services:
   web:
     image: "${IMAGE}"
+    environment:
+      SECRET: efa6b5e3523d4cc5847a04da56e57bd5
+      JWT_DAYS: 14
   db:
     container_name: chatty-db
     image: mongo:latest
