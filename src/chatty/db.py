@@ -1,9 +1,8 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 
-from settings import MONGODB_URL
-
 DB = None
 CLIENT = None
+MONGODB_URL = "mongodb://chatty-db/"
 
 
 def client():
