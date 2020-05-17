@@ -31,6 +31,12 @@ make run-d
 make build
 ```
 
+#### Running with gunicorn and nginx (for deploying)
+
+```bash
+make run-dev
+```
+
 #### Removing service containers
 
 ```bash
